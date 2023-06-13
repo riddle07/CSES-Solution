@@ -21,6 +21,7 @@ bool dfs(vector<vector<int>> &graph, vector<int> &v, int crt, int p, vector<int>
                 return true;
         }
     }
+    temp.pop_back();
     return false;
 }
 
