@@ -17,7 +17,7 @@ while(t):
                 crt = i
                 c = c+1
             else: crt += i
-        if(c==k):
+        if(c+1==k):
             ans = m
             h = m-1
         elif(c<k):
