@@ -17,15 +17,17 @@ int dfs(vector<vector<int>> &graph, int i, int j)
         }
     }
     sort(temp.begin(), temp.end(), greater<int>());
-    if (temp.size() == 1)
+    if (temp.size() == 2)
     {
-        ans = max({ans, 1 + temp[0], 1});
+        ans = max(ans, 1 + temp[0]);
+        return 1 + temp[0];
     }
     else
     {
-        ans = max({ans, 1 + temp[0], 1 + temp[1], 1 + temp[0], temp[1], 1});
+        ans = max({ans, 1 + temp[0] + temp[1]});
+        return 1 + temp[0] + temp[1];
     }
-    return max(1 + temp[0], 1);
+    return 0;
 }
 
 int main()
