@@ -52,7 +52,7 @@ int main()
             {
                 dp[i][v[i]] = (dp[i][v[i]] + dp[i - 1][v[i] + 1]) % mod;
             }
-            dp[i][v[i]] += (dp[i][v[i]] + dp[i - 1][v[i]]) % mod;
+            dp[i][v[i]] = (dp[i][v[i]] + dp[i - 1][v[i]]) % mod;
         }
     }
     long long ans = 0;
