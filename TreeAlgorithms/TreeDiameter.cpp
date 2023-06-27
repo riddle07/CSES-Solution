@@ -6,28 +6,30 @@ int ans = INT_MIN;
 
 int dfs(vector<vector<int>> &graph, int i, int j)
 {
-    if (graph[i].size() == 1)
-        return 1;
-    vector<int> temp;
+    vector<int> c;
     for (auto x : graph[i])
     {
         if (x != j)
         {
-            temp.push_back(dfs(graph, x, i));
+            c.push_back(dfs(graph, x, i));
         }
     }
-    sort(temp.begin(), temp.end(), greater<int>());
-    if (temp.size() == 2)
+    if (c.size() == 0)
     {
-        ans = max(ans, 1 + temp[0]);
-        return 1 + temp[0];
+        ans = max(ans, 1);
+        return 1;
+    }
+    else if (c.size() == 1)
+    {
+        ans = max({ans, 1, c[0] + 1});
+        return c[0] + 1;
     }
     else
     {
-        ans = max({ans, 1 + temp[0] + temp[1]});
-        return 1 + temp[0] + temp[1];
+        sort(c.begin(), c.end(), greater<int>());
+        ans = max({ans, 1, c[0] + 1, c[1] + 1, c[0] + c[1] + 1});
+        return 1 + max(c[0], c[1]);
     }
-    return 0;
 }
 
 int main()
@@ -43,5 +45,5 @@ int main()
         graph[y].push_back(x);
     }
     dfs(graph, 0, -1);
-    cout << ans << endl;
+    cout << ans - 1 << endl;
 }
